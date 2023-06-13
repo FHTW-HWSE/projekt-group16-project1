@@ -6,7 +6,7 @@ find_package(Catch2 REQUIRED)
 include(CTest)
 include(Catch)
 
-set(TESTING FALSE)
+set(TESTING TRUE)
 
 if(NOT TESTING)
 add_executable(seats10 main.cpp seatAssignment.cpp)

@@ -176,6 +176,8 @@ int checkUsername(const char* username) {
 
 
 
+
+
 void personalSeat(const char *username) {
     FILE* file = fopen("../database/users.csv", "r");
     if (file == NULL) {

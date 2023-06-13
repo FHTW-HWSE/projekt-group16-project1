@@ -19,10 +19,10 @@ TEST_CASE("Create table") {
 
 TEST_CASE("Check username") {
     // Test case 1: When the username exists
-    REQUIRE(checkUsername("ic22b090") == 1);
+    REQUIRE(checkUsername("ic22b099") == 1);
 
     // Test case 2: When the username does not exist
-    REQUIRE(checkUsername("ic22b015") == 0);
+    REQUIRE(checkUsername("ic22b700") == 0);
 }
 
 TEST_CASE("Personal seat") {
