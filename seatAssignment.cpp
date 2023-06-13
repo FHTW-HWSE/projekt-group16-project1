@@ -153,12 +153,12 @@ int checkUsername(const char* username) {
 
     // Read and compare each line in the CSV file
     char line[MAX_USERNAME_LENGTH];
-    //while (fgets(line, MAX_USERNAME_LENGTH, file) != NULL) {
+    while (fgets(line, MAX_USERNAME_LENGTH, file) != NULL) {
         // Remove the newline character from the line
-        /*int len = strlen(line);
+        int len = strlen(line);
         if (line[len - 1] == '\n') {
             line[len - 1] = '\0';
-        }*/
+        }
 
         // Extract the username from the line
         fscanf(file, "%[^\n]", line);
@@ -168,12 +168,11 @@ int checkUsername(const char* username) {
             fclose(file);
             return 1;  // Username exists
         }
-    //}
+    }
 
     fclose(file);
     return 0;  // Username not found
 }
-
 
 
 
