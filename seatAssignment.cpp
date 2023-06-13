@@ -112,15 +112,31 @@ int countStudents() {
     FILE *file = fopen("../database/username.csv", "r");
     if (file == NULL) {
         printf("Error: Unable to open file\n");
+        return -1;
+    }
+
+    // Check if the file is empty
+    fseek(file, 0, SEEK_END);
+    if (ftell(file) == 0) {
+        fclose(file);
         return 0;
     }
 
+    // If the file is not empty, count the students
+    fseek(file, 0, SEEK_SET);
     int count = 0;
-    char ch;
-    while ((ch = fgetc(file)) != EOF) {
-        if (ch == '\n') {
-            count++;
-        }
+    char line[100];
+
+    // Skip the header line
+    if (fgets(line, sizeof(line), file) == NULL) {
+        // File is empty (excluding the header line)
+        fclose(file);
+        return 0;
+    }
+
+    // Count the remaining lines (students)
+    while (fgets(line, sizeof(line), file) != NULL) {
+        count++;
     }
 
     fclose(file);
@@ -241,7 +257,7 @@ bool isUsernameExisting(const char* username) {
 void addUser(const char* username) {
     //Check if username already exists
     if (isUsernameExisting(username)) {
-        printf("Error: Username '%s' already exists\n", username);
+        printf("Username '%s' already exists\n", username);
         return;
     }
     
